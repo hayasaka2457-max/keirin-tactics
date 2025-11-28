@@ -1,0 +1,23 @@
+<h2>ライン構成 (クリックで追加/削除)</h2>
+
+<div id="player-container">
+    <div class="player" data-player-id="1">1</div>
+    <div class="player" data-player-id="2">2</div>
+    <div class="player" data-player-id="3">3</div>
+    <div class="player" data-player-id="4">4</div>
+    <div class="player" data-player-id="5">5</div>
+    <div class="player" data-player-id="6">6</div>
+    <div class="player" data-player-id="7">7</div>
+    <div class="player" data-player-id="8">8</div>
+    <div class="player" data-player-id="9">9</div>
+</div>
+
+<hr>
+
+<div id="current-line-display">
+    選手をクリックしてラインを作成してください。
+</div>
+
+<button id="reset-line">ラインをリセット</button>
+
+<script src="app.js"></script>
