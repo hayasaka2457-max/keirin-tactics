@@ -1,0 +1,16 @@
+body {
+    /* 1. 画像ファイルのパスを指定 */
+    background-image: url("画像のファイルパス"); 
+    
+    /* 2. 画像が繰り返さないように設定 */
+    background-repeat: no-repeat;
+    
+    /* 3. 画像を画面全体にフィットさせる（オプション） */
+    background-size: cover; 
+    
+    /* 4. 画像を画面の中央に配置（オプション） */
+    background-position: center center;
+    
+    /* 5. 画面をスクロールしても画像を固定（オプション） */
+    background-attachment: fixed;
+}
