@@ -1,0 +1,61 @@
+// ラインの順番を保持する配列 (システムの「状態」)
+let lineFormation = [];
+
+// DOM要素の取得
+const playerElements = document.querySelectorAll('.player');
+const displayArea = document.getElementById('current-line-display');
+const resetButton = document.getElementById('reset-line');
+
+// 選手のクリックイベントを設定
+playerElements.forEach(playerEl => {
+    playerEl.addEventListener('click', () => {
+        // 選手番号をデータ属性から取得
+        const playerId = parseInt(playerEl.dataset.playerId);
+        
+        // 選手が既にラインにいるか検索
+        const index = lineFormation.indexOf(playerId);
+
+        if (index === -1) {
+            // **連結（ラインに追加）**: ラインにいない場合、配列の最後に追加
+            lineFormation.push(playerId);
+        } else {
+            // **切り離し（ラインから削除）**: ラインにいる場合、配列から削除
+            lineFormation.splice(index, 1);
+        }
+        
+        // 画面表示と見た目を更新
+        updateUI();
+    });
+});
+
+// リセットボタンのイベント設定
+resetButton.addEventListener('click', () => {
+    lineFormation = []; // ラインを空にする
+    updateUI();
+});
+
+
+// 画面表示と見た目を更新する関数
+function updateUI() {
+    // 1. ライン表示エリアの更新
+    if (lineFormation.length > 0) {
+        // 配列の要素を「 → 」で繋いで表示
+        const lineText = lineFormation.join(' → ');
+        displayArea.innerHTML = `現在のライン: <span class="line-sequence">${lineText}</span>`;
+    } else {
+        displayArea.textContent = '選手をクリックしてラインを作成してください。';
+    }
+    
+    // 2. 選手要素の見た目の更新（CSSクラスの付け替え）
+    playerElements.forEach(el => {
+        const id = parseInt(el.dataset.playerId);
+        
+        if (lineFormation.includes(id)) {
+            // ラインに含まれる場合、CSSクラス 'linked' を付与
+            el.classList.add('linked');
+        } else {
+            // ラインに含まれない場合、CSSクラス 'linked' を削除
+            el.classList.remove('linked');
+        }
+    });
+}
